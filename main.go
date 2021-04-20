@@ -66,8 +66,8 @@ func registerRoutes(router *chi.Mux) {
 }
 
 func getPoints(w http.ResponseWriter, r *http.Request) {
-
 	defer r.Body.Close()
+
 	x, invalidX := strconv.ParseFloat(r.URL.Query().Get("x"), 32)
 	y, invalidY := strconv.ParseFloat(r.URL.Query().Get("y"), 32)
 	dist, invalidDist := strconv.ParseFloat(r.URL.Query().Get("distance"), 64)
