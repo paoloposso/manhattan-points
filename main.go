@@ -68,20 +68,19 @@ func registerRoutes(router *chi.Mux) {
 func getPoints(w http.ResponseWriter, r *http.Request) {
 
 	defer r.Body.Close()
-	var parseErr error
-	x, _ := strconv.ParseFloat(r.URL.Query().Get("x"), 32)
-	y, _ := strconv.ParseFloat(r.URL.Query().Get("y"), 32)
-	distance, parseErr := strconv.ParseFloat(r.URL.Query().Get("distance"), 64)
+	x, invalidX := strconv.ParseFloat(r.URL.Query().Get("x"), 32)
+	y, invalidY := strconv.ParseFloat(r.URL.Query().Get("y"), 32)
+	dist, invalidDist := strconv.ParseFloat(r.URL.Query().Get("distance"), 64)
 
-	if parseErr != nil {
+	if invalidX != nil || invalidY != nil || invalidDist != nil {
 		code := 500
-		msg := formatError(parseErr, fmt.Sprintf("%b", code))
+		msg := fmt.Sprintf("{ \"message\": \"%s\" }", "Invalid parameters")
 		w.WriteHeader(code)
 		w.Write([]byte(msg))
 		return
 	}
 
-	p, err := points.GetPointsInsideManhattanDistance(points.Point{X: x, Y: y}, distance)
+	p, err := points.GetPointsInsideManhattanDistance(points.Point{X: x, Y: y}, dist)
 
 	if err != nil {
 		code := 500
