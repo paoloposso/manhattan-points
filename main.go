@@ -3,12 +3,13 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github/paoloposso/cartesian-api/points"
 	"net/http"
 	"os"
 	"os/signal"
 	"strconv"
 	"syscall"
+
+	"github.com/paoloposso/cartesian-api/points"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
