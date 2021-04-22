@@ -1,4 +1,4 @@
-module github.com/paoloposso/cartesian-api
+module github.com/paoloposso/manhattan-points
 
 go 1.16
 

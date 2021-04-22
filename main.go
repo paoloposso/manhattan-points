@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"syscall"
 
-	"github.com/paoloposso/cartesian-api/points"
+	"github.com/paoloposso/manhattan-points/points"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
